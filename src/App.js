@@ -35,10 +35,8 @@ function App() {
 
   /** @type React.MutableRefObject<HTMLInputElement> */
   const originRef = useRef();
-  const origin2Ref = useRef();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef();
-  const destiantion2Ref = useRef();
 
   if (!isLoaded) {
     return <SkeletonText />;
@@ -63,10 +61,28 @@ function App() {
       // eslint-disable-next-line no-undef
       travelMode: google.maps.TravelMode.DRIVING,
     });
-
+    console.log(results);
+    let myDist = [
+      parseInt(results.routes[0].legs[0].distance.text.split(" ")),
+      parseInt(results.routes[0].legs[1].distance.text.split(" ")),
+      parseInt(results.routes[0].legs[2].distance.text.split(" ")),
+    ];
+    let distance = myDist.reduce((a, b) => {
+      return a + b;
+    }, 10);
+    let myTime = [
+      parseInt(results.routes[0].legs[0].duration.text.split(" ")),
+      parseInt(results.routes[0].legs[1].duration.text.split(" ")),
+      parseInt(results.routes[0].legs[2].duration.text.split(" ")),
+    ];
+    let time = myDist.reduce((a, b) => {
+      return a + b;
+    }, 10);
+    console.log(myDist);
+    console.log(myTime);
     setDirectionsResponse(results);
-    setDistance(results.routes[0].legs[0].distance.text);
-    setDuration(results.routes[0].legs[0].duration.text);
+    setDistance(distance + " km");
+    setDuration(time + " min");
   }
 
   function clearRoute() {
@@ -113,7 +129,7 @@ function App() {
         m={4}
         bgColor="white"
         shadow="base"
-        width="20vw"
+        width="30vw"
         zIndex="1"
       >
         <HStack spacing={2} justifyContent="space-between">
