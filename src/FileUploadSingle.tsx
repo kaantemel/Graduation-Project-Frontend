@@ -38,7 +38,8 @@ function FileUploadSingle() {
       // 👇 Set headers manually for single file upload
       headers: {
         "content-type": file.type,
-        "content-length": `${file.size}`, // 👈 Headers need to be a string
+        "content-length": `${file.size}`,
+        "solver-type": "solver", // 👈 Headers need to be a string
       },
     })
       .then((res) => res.json())
