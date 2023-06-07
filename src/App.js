@@ -32,16 +32,7 @@ const routes = [
     ["40.95673365295175", "29.39085065571143"],
     ["40.97906099583216", "29.110213592605717"],
   ],
-  [
-    ["40.97906099583216", "29.110213592605717"],
-    ["41.08252512422859", "29.02055610131978"],
-    ["41.0439853329135", "29.07847544984874"],
-    ["41.022840229382716", "29.020822049275058"],
-    ["41.021289164720024", "29.044592862483224"],
-    ["40.959997798019515", "29.081336340161723"],
-    ["40.967516067589195", "29.086662503242763"],
-    ["40.97906099583216", "29.110213592605717"],
-  ],
+
   [
     ["40.99906099583216", "29.110213592605717"],
     ["41.08252512422859", "29.02055610131978"],
@@ -63,7 +54,7 @@ function App() {
 
   const [map, setMap] = useState(/** @type google.maps.Map */ (null));
   let [directionsResponse, setDirectionsResponse] = useState([]);
-  const [routeIndex, setRouteIndex] = useState(2);
+  const [routeIndex, setRouteIndex] = useState(0);
   const [directionsResponse3, setDirectionsResponse3] = useState(null);
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
@@ -119,8 +110,6 @@ function App() {
     setDirectionsResponse([]);
     setDistance("");
     setDuration("");
-    originRef.current.value = "";
-    destiantionRef.current.value = "";
   }
 
   return (
@@ -145,10 +134,54 @@ function App() {
           }}
           onLoad={(map) => setMap(map)}
         >
-          <Marker position={center} />
+          {routes.map((route, index) => {
+            if (index !== routeIndex) {
+              console.log(index);
+              return route.map((loc, locindex) => (
+                <Marker
+                  key={locindex}
+                  label={locindex.toString()}
+                  position={
+                    new google.maps.LatLng(
+                      parseFloat(loc[0]),
+                      parseFloat(loc[1])
+                    )
+                  }
+                />
+              ));
+            } else {
+              return route.map((loc, locindex) => {
+                if (locindex !== route.length - 1) {
+                  return (
+                    <Marker
+                      key={locindex}
+                      icon={{ scaledSize: new google.maps.Size(60, 60) }}
+                      label={{
+                        text: locindex.toString(),
+                        color: "white",
+                        fontSize: "20px",
+                      }}
+                      options={{ suppressMarkers: "true" }}
+                      zIndex={Infinity}
+                      position={
+                        new google.maps.LatLng(
+                          parseFloat(loc[0]),
+                          parseFloat(loc[1])
+                        )
+                      }
+                    />
+                  );
+                }
+              });
+            }
+          })}
           {directionsResponse &&
             directionsResponse.map((response, index) => (
-              <DirectionsRenderer key={index} directions={response} />
+              <DirectionsRenderer
+                key={index}
+                options={{ suppressMarkers: "false" }}
+                directions={response}
+              />
             ))}
         </GoogleMap>
       </Box>
