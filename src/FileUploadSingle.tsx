@@ -2,7 +2,7 @@ import { color } from "@chakra-ui/react";
 import React from "react";
 import { ChangeEvent, useState } from "react";
 
-function FileUploadSingle() {
+function FileUploadSingle({ setRoutes, option, clearRoute }) {
   const [file, setFile] = useState<File>();
   const [fileContent, setFileContent] = useState<string>("");
 
@@ -26,25 +26,43 @@ function FileUploadSingle() {
     }
   };
 
-  const handleUploadClick = () => {
-    if (!file) {
+  const handleUploadClick = async () => {
+    if (!fileContent) {
       return;
     }
-
-    // 👇 Uploading the file using the fetch API to the server
-    fetch("https://httpbin.org/post", {
-      method: "POST",
-      body: file,
-      // 👇 Set headers manually for single file upload
-      headers: {
-        "content-type": file.type,
-        "content-length": `${file.size}`,
-        "solver-type": "solver", // 👈 Headers need to be a string
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.error(err));
+    const payload = {
+      fileContent: fileContent,
+    };
+    clearRoute();
+    if (option === "Tabu") {
+      // 👇 Uploading the file content as JSON
+      await fetch("http://localhost:5000/post", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setRoutes(data["results"]);
+        })
+        .catch((err) => console.error(err));
+    } else if (option === "Gurobi") {
+      // 👇 Uploading the file content as JSON
+      await fetch("http://localhost:5000/postgurobi", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setRoutes(data["results"]);
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
