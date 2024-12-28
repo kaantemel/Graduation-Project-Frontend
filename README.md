@@ -44,7 +44,7 @@ This is the frontend application for the Decision Support System for Route Plann
 Contributions are encouraged! Please fork the repository and submit your pull requests.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+[MIT](https://choosealicense.com/licenses/mit/)
 
 ## Contact
 Feel free to contact via GitHub or email for any feedback or issues.
