@@ -33,18 +33,15 @@ This is the frontend application for the Decision Support System for Route Plann
 
 ## User Interface
 ![alt text](https://i.imgur.com/FjRqozT.png)
+- Before uploading the desired locations.
+  
 ![alt text](https://i.imgur.com/kvSY2Jk.png)
-
+- Demonstration of the map for found routes with the desired locations.
+  
 ## Features
 - Upload TXT files with route data.
 - Select optimization algorithms.
 - Visualize routes on Google Maps.
 
-## Contributing
-Contributions are encouraged! Please fork the repository and submit your pull requests.
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Contact
-Feel free to contact via GitHub or email for any feedback or issues.
