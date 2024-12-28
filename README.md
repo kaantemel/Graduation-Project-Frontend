@@ -1,43 +1,50 @@
-# Getting Started with Google Maps API with Places autocomplete and Directions service and renderer.
 
-## What is covered?
+# Frontend for Decision Support System
 
-1. Google maps in React
-2. Adding Markers
-3. Panning and zooming maps
-4. Disable default controls
-5. Places Autocomplete
-6. Directions Service
-7. Directions Renderer on map
+## Overview
+This is the frontend application for the Decision Support System for Route Planning, developed using React and integrated with Google Maps API for route visualization.
 
-## Youtube tutorial
+## Technology Stack
+- **Framework:** React
+- **Maps:** Google Maps API
 
-[https://youtu.be/iP3DnhCUIsE](https://youtu.be/iP3DnhCUIsE)
+## Getting Started
 
-## Starting the app
+### Prerequisites
+- Node.js
+- npm or yarn
 
-Create an API in the google developers console [https://console.developers.google.com](https://console.developers.google.com), make sure to enable billing for the google project, otherwise you may get a warning as _development purposes only_.
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/kaantemel/Graduation-Project-Frontend.git
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Add a `.env` file or `.env.local` in the project root and specify your API key as `REACT_APP_GOOGLE_MAPS_API_KEY=your_api_key_here`
+### Running the Application
+1. Start the application:
+   ```bash
+   npm start
+   ```
+2. Visit `http://localhost:3000` to view the application in your browser.
 
-In the project directory, you can run:
+## User Interface
+![alt text](https://i.imgur.com/FjRqozT.png)
+![alt text](https://i.imgur.com/kvSY2Jk.png)
 
-```
-yarn install
-yarn start
-```
+## Features
+- Upload TXT files with route data.
+- Select optimization algorithms.
+- Visualize routes on Google Maps.
 
-OR using npm
+## Contributing
+Contributions are encouraged! Please fork the repository and submit your pull requests.
 
-```
-npm install
-npm start
-```
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Author
-
-- [**Truly Mittal**](https://trulymittal.com)
-
-## Contribute
-
-You can fork this repo and send me a PR.
+## Contact
+Feel free to contact via GitHub or email for any feedback or issues.
